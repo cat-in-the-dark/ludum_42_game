@@ -16,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving = false;
     private bool flipX = false;
 
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -31,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
         SmoothMovement();
 
         int h = (int) Input.GetAxisRaw("Horizontal");
-        int v = (int) Input.GetAxisRaw("Vertical");
 
         if (h == 0) return;
 
