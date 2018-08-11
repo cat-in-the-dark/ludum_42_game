@@ -5,8 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask blockingLayer; //Layer on which collision will be checked.
     public float moveTime = 0.1f;
 
-    private BoxCollider2D collider;
-    private Rigidbody2D body;
+    private Collider2D collider;
     private Animator animator;
     private SpriteRenderer renderer;
 
@@ -25,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
-        body = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -58,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
         var start = transform.position;
         end = normalize(start.x + dir);
-        
+
         var to = start + Vector3.right * dir;
 
         collider.enabled = false;

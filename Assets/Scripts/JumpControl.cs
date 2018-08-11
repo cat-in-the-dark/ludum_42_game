@@ -53,7 +53,6 @@ public class JumpControl : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
-            Debug.LogFormat("Touch {0}", other);
         }
     }
 
