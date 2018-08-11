@@ -1,15 +1,16 @@
-﻿using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JumpControl : MonoBehaviour
 {
     private Animator animator;
-    private bool canJump = true;
     private Rigidbody2D body;
-    
+    private bool grounded = true;
+
+    public float lastJumpAt = float.MaxValue;
+    public float jumpDelay = 1f;
     public float jumpPower = 1f;
     private PlayerMovement playerMovement;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -21,14 +22,19 @@ public class JumpControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lastJumpAt += Time.deltaTime;
         TryJump();
+        if (grounded)
+        {
+            OnStopJumping();
+        }
     }
 
     void TryJump()
     {
         if (!Input.GetButton("Jump")) return;
 
-        if (canJump && !playerMovement.IsMoving())
+        if (CanJump())
         {
             OnJump();
         }
@@ -36,23 +42,28 @@ public class JumpControl : MonoBehaviour
 
     void OnJump()
     {
+        lastJumpAt = 0;
+        grounded = false;
         animator.SetBool("playerJumping", true);
         body.AddForce(Vector2.up * jumpPower);
-        canJump = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            grounded = true;
             Debug.LogFormat("Touch {0}", other);
-            OnStopJumping();
         }
     }
 
     private void OnStopJumping()
     {
         animator.SetBool("playerJumping", false);
-        canJump = true;
+    }
+
+    private bool CanJump()
+    {
+        return grounded && (lastJumpAt >= jumpDelay) && !playerMovement.IsMoving();
     }
 }

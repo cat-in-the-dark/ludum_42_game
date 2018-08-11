@@ -10,11 +10,11 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer renderer;
 
-    private const float EPSILON = 0.001f;
+    private const float EPSILON = 0.00001f;
     private float sqrRemainingDistance = 0f;
-    private Vector3 end = Vector3.zero;
-    private bool isMoving = false;
-    private bool flipX = false;
+    private float end;
+    private bool isMoving;
+    private bool flipX;
 
     public bool IsMoving()
     {
@@ -42,31 +42,32 @@ public class PlayerMovement : MonoBehaviour
         if (h < 0)
         {
             flipX = true;
-            TryMove(Vector3.left);
+            TryMove(-1);
         }
         else
         {
             flipX = false;
-            TryMove(Vector3.right);
+            TryMove(1);
         }
     }
 
-    bool TryMove(Vector3 dir)
+    bool TryMove(int dir)
     {
         if (isMoving) return false;
         renderer.flipX = flipX;
 
         var start = transform.position;
-        end = start + dir;
+        end = normalize(start.x + dir);
+        
+        var to = start + Vector3.right * dir;
 
         collider.enabled = false;
-        var hit = Physics2D.Linecast(start, end, blockingLayer);
+        var hit = Physics2D.Linecast(start, to, blockingLayer);
         collider.enabled = true;
 
         if (hit.transform != null) return false;
 
-        Debug.LogFormat("MOVE {0} to {1}", start, end);
-        isMoving = true;
+//        Debug.LogFormat("MOVE {0} to {1}", start, end);        
         OnStartMoving();
 
         return true;
@@ -77,29 +78,42 @@ public class PlayerMovement : MonoBehaviour
         // TODO: CHECK THAT OBJECT DOESN't STUCK in box collider
         if (!isMoving) return;
         var inverseMoveTime = 1f / moveTime;
-        sqrRemainingDistance = (transform.position - end).sqrMagnitude;
+
+        var delta = end - transform.position.x;
+        sqrRemainingDistance = delta * delta;
         if (sqrRemainingDistance > EPSILON)
         {
-            Vector3 newPosition = Vector3.MoveTowards(body.position, end, inverseMoveTime * Time.deltaTime);
-            body.MovePosition(newPosition);
-            sqrRemainingDistance = (transform.position - end).sqrMagnitude;
+            var maxDistanceDelta = inverseMoveTime * Time.deltaTime;
+            if (sqrRemainingDistance <= maxDistanceDelta)
+            {
+                transform.position = new Vector3(end, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                transform.Translate(maxDistanceDelta / delta, 0, 0);
+            }
         }
         else
         {
-            isMoving = false;
+            transform.position = new Vector3(end, transform.position.y, transform.position.z);
             OnStopMoving();
         }
     }
 
     private void OnStartMoving()
     {
-        // TODO: it should be kind of event?
+        isMoving = true;
         animator.SetBool("playerRunning", true);
     }
 
     private void OnStopMoving()
     {
-        // TODO: it should be kind of event?
+        isMoving = false;
         animator.SetBool("playerRunning", false);
+    }
+
+    private float normalize(float x)
+    {
+        return Mathf.Floor(x / 0.5f) * 0.5f;
     }
 }
