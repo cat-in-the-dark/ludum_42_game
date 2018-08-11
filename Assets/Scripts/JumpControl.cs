@@ -4,7 +4,7 @@ public class JumpControl : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody2D body;
-    private bool grounded = true;
+    public bool grounded = true;
 
     public float lastJumpAt = float.MaxValue;
     public float jumpDelay = 1f;

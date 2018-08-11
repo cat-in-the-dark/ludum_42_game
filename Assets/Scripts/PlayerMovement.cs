@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public LayerMask blockingLayer; //Layer on which collision will be checked.
     public float moveTime = 0.1f;
 
-    private Collider2D collider;
+    private Collider2D aCollider;
     private Animator animator;
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
 
     private const float EPSILON = 0.00001f;
     private float sqrRemainingDistance = 0f;
+    private float start;
     private float end;
     private bool isMoving;
     private bool flipX;
@@ -24,8 +26,18 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        collider = GetComponent<Collider2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        aCollider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public bool CanStomp()
+    {
+        return !IsMoving();
+    }
+
+    public void OnStomp()
+    {
+        animator.SetTrigger("playerStomp");
     }
 
     // Update is called once per frame
@@ -52,16 +64,18 @@ public class PlayerMovement : MonoBehaviour
     bool TryMove(int dir)
     {
         if (isMoving) return false;
-        renderer.flipX = flipX;
+        spriteRenderer.flipX = flipX;
 
-        var start = transform.position;
-        end = normalize(start.x + dir);
+        var startPos = transform.position;
+        start = startPos.x;
+        end = normalize(start + dir);
+        Debug.Log(end);
 
-        var to = start + Vector3.right * dir;
+        var to = startPos + Vector3.right * dir;
 
-        collider.enabled = false;
-        var hit = Physics2D.Linecast(start, to, blockingLayer);
-        collider.enabled = true;
+        aCollider.enabled = false;
+        var hit = Physics2D.Linecast(startPos, to, blockingLayer);
+        aCollider.enabled = true;
 
         if (hit.transform != null) return false;
 
@@ -78,23 +92,22 @@ public class PlayerMovement : MonoBehaviour
         var inverseMoveTime = 1f / moveTime;
 
         var delta = end - transform.position.x;
-        sqrRemainingDistance = delta * delta;
-        if (sqrRemainingDistance > EPSILON)
+        var maxDistanceDelta = inverseMoveTime * Time.deltaTime;
+        if (Mathf.Abs(delta) > EPSILON && Mathf.Abs(delta) > maxDistanceDelta)
         {
-            var maxDistanceDelta = inverseMoveTime * Time.deltaTime;
-            if (sqrRemainingDistance <= maxDistanceDelta)
-            {
-                transform.position = new Vector3(end, transform.position.y, transform.position.z);
-            }
-            else
-            {
-                transform.Translate(maxDistanceDelta / delta, 0, 0);
-            }
+            transform.Translate(maxDistanceDelta * Math.Sign(delta), 0, 0);
         }
         else
         {
             transform.position = new Vector3(end, transform.position.y, transform.position.z);
             OnStopMoving();
+        }
+        
+        var newDelta = end - transform.position.x;
+        if (newDelta - delta > EPSILON)
+        {
+            Debug.Log("Strange!");
+//            end = start;
         }
     }
 
@@ -112,6 +125,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float normalize(float x)
     {
-        return Mathf.Floor(x / 0.5f) * 0.5f;
+        return Mathf.Ceil(x) - 0.5f;
     }
 }
