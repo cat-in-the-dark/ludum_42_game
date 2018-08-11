@@ -5733,7 +5733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirt: {fileID: 1865508428168830, guid: 6277559498387481b8e653d91df24955, type: 2}
-  DropCooldown: 0.6
+  DropCooldown: 2
 --- !u!114 &1978159764
 MonoBehaviour:
   m_ObjectHideFlags: 0

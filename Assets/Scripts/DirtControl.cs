@@ -3,6 +3,7 @@
 public class DirtControl : MonoBehaviour
 {
     public float StampDelay = 1f;
+    private int MaxStompLevel = 3;
     
     public bool canBeStomped;
     public bool grounded;
@@ -43,6 +44,12 @@ public class DirtControl : MonoBehaviour
         canBeStomped = false;
         stompLevel++;
         animator.SetTrigger("press");
+        if (stompLevel > MaxStompLevel)
+        {
+            canBeStomped = false;
+            MakeSolid();
+            return;
+        }
         Invoke("ResetStampCooldown", StampDelay);
     }
 
@@ -65,10 +72,16 @@ public class DirtControl : MonoBehaviour
     {
         transform.position = new Vector3(normalize(transform.position.x), normalize(transform.position.y), transform.position.z);
         gameObject.tag = "Ground";
-        gameObject.layer = SortingLayer.NameToID("Ground");
+        gameObject.layer = LayerMask.NameToLayer("Ground");
         body.bodyType = RigidbodyType2D.Kinematic;
         body.freezeRotation = true;
         body.constraints = RigidbodyConstraints2D.FreezeAll;
+        aCollider.isTrigger = true;
+    }
+
+    private void MakeSolid()
+    {
+        aCollider.isTrigger = false;
     }
 
     private bool IsCollidingPlayer()
