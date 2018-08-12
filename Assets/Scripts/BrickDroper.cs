@@ -21,7 +21,7 @@ public class BrickDroper : MonoBehaviour
         float posX = column - 1.5f;
         float posY = 6.5f;
 
-        var inst = Instantiate(Brick, new Vector3(posX, posY, -1), Quaternion.identity);
+        Instantiate(Brick, new Vector3(posX, posY, -1), Quaternion.identity);
         
         Invoke("Drop", RandomTime());
     }

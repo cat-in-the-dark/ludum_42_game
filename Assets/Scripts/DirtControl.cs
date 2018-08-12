@@ -110,7 +110,6 @@ public class DirtControl : MonoBehaviour
         var rem = (y * 10f) % mod;
         if (rem < 0) rem += 5;
         var res = y - rem / 10f;
-        Debug.LogFormat("{0} to {1}: {2}", y, res, rem);
         if (res < -1.5) return -1.5f; // TODO: its costil, need smart round
         return res;
 //        return y;

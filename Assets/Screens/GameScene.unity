@@ -1804,6 +1804,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &622375784 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4731835439613714, guid: a8b861ed0a4b54191b885526cc35a0d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1206941195}
 --- !u!1 &638977249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5818,6 +5823,7 @@ GameObject:
   - component: {fileID: 1978159763}
   - component: {fileID: 1978159767}
   - component: {fileID: 1978159766}
+  - component: {fileID: 1978159768}
   m_Layer: 0
   m_Name: SCRIPTS
   m_TagString: Untagged
@@ -5901,6 +5907,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Brick: {fileID: 1925565674019004, guid: 49dbb9444b532419eaa1a839ae86192d, type: 2}
   DropCooldown: 4
+--- !u!114 &1978159768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1978159761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4eedd48e22eb47c0977b3bb01958676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 622375784}
+  Camera: {fileID: 528753267}
 --- !u!1 &2022132747
 GameObject:
   m_ObjectHideFlags: 0

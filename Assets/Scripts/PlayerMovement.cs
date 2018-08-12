@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private const float EPSILON = 0.00001f;
-    private float sqrRemainingDistance = 0f;
     private float start;
     private float end;
     private bool isMoving;
