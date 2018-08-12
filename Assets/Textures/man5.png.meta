@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 20f7d6f9e3b1844129be03e83c879d6f
+guid: b20266d8411e843df9728b351b753deb
 TextureImporter:
   fileIDToRecycleName:
-    21300000: brick1brake2_0
-    21300002: brick1brake2_1
-    21300004: brick1brake2_2
-    21300006: brick1brake2_3
-    21300008: brick1brake2_4
-    21300010: brick1brake2_5
-    21300012: brick1brake2_6
-    21300014: brick1brake2_7
-    21300016: brick1brake2_8
-    21300018: brick1brake2_9
+    21300000: man5_0
+    21300002: man5_1
+    21300004: man5_2
+    21300006: man5_3
+    21300008: man5_4
+    21300010: man5_5
+    21300012: man5_6
+    21300014: man5_7
+    21300016: man5_8
+    21300018: man5_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -99,13 +99,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: brick1brake2_0
+      name: man5_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 12
-        width: 24
-        height: 24
+        x: 0
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,13 +113,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_1
+      name: man5_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 12
-        width: 24
-        height: 24
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,13 +127,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_2
+      name: man5_2
       rect:
         serializedVersion: 2
-        x: 108
-        y: 12
-        width: 24
-        height: 24
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,13 +141,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_3
+      name: man5_3
       rect:
         serializedVersion: 2
-        x: 156
-        y: 12
-        width: 24
-        height: 24
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,13 +155,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_4
+      name: man5_4
       rect:
         serializedVersion: 2
-        x: 204
-        y: 12
-        width: 24
-        height: 24
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,13 +169,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_5
+      name: man5_5
       rect:
         serializedVersion: 2
-        x: 228
-        y: 12
-        width: 24
-        height: 24
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,13 +183,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_6
+      name: man5_6
       rect:
         serializedVersion: 2
-        x: 252
-        y: 12
-        width: 24
-        height: 24
+        x: 288
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,13 +197,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_7
+      name: man5_7
       rect:
         serializedVersion: 2
-        x: 276
-        y: 12
-        width: 24
-        height: 24
+        x: 336
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,13 +211,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_8
+      name: man5_8
       rect:
         serializedVersion: 2
-        x: 300
-        y: 12
-        width: 24
-        height: 24
+        x: 384
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,13 +225,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: brick1brake2_9
+      name: man5_9
       rect:
         serializedVersion: 2
-        x: 348
-        y: 12
-        width: 24
-        height: 24
+        x: 432
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

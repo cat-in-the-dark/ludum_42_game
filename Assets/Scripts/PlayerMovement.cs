@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float end;
     private bool isMoving;
     private bool flipX;
+    public bool isStan;
 
     public bool IsMoving()
     {
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CanStomp()
     {
-        return !IsMoving();
+        return !IsMoving() && !isStan;
     }
 
     public void OnStomp()
@@ -71,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     bool TryMove(int dir)
     {
 //        if (isMoving) return false;
+        if (isStan) return false;
         spriteRenderer.flipX = flipX;
 
         var startPos = transform.position;
@@ -134,5 +136,19 @@ public class PlayerMovement : MonoBehaviour
     private float normalize(float x)
     {
         return Mathf.Ceil(x) - 0.5f;
+    }
+
+    public void Hurt(float stanDelay)
+    {
+        CancelInvoke("ResetStan");
+        animator.SetBool("stan", true);
+        isStan = true;
+        Invoke("ResetStan", stanDelay);
+    }
+
+    private void ResetStan()
+    {
+        animator.SetBool("stan", false);
+        isStan = false;
     }
 }

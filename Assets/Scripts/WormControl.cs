@@ -17,6 +17,7 @@ public class WormControl : MonoBehaviour
 	void PrepareDestroy()
 	{
 		animator.SetTrigger("Destroy");
+		Destroy(gameObject, 2f);
 	}
 	
 	// Update is called once per frame
