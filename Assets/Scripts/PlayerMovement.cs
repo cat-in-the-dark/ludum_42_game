@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnStomp()
     {
-        stamina--;
         animator.SetTrigger("playerStomp");
     }
 
@@ -107,8 +106,7 @@ public class PlayerMovement : MonoBehaviour
         aCollider.enabled = true;
 
         if (hit.transform != null) return false;
-
-        Debug.LogFormat("MOVE {0} to {1}", toEnd, end);
+        
         if (Math.Abs(end - toEnd) > 0.1)
         {
             stamina--;
@@ -176,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnResetStamina()
     {
-        if (resetingStamina) return;
+        if (resetingStamina || isStan) return;
         resetingStamina = true;
         animator.SetBool("resting", true);
         HeartAnimator.SetTrigger("exploid");

@@ -57,6 +57,7 @@ public class DirtControl : MonoBehaviour
     {
         canBeStomped = false;
         stompLevel++;
+        player.stamina--;
         animator.SetTrigger("press");
         if (stompLevel > MaxStompLevel)
         {
