@@ -63,6 +63,6 @@ public class JumpControl : MonoBehaviour
 
     private bool CanJump()
     {
-        return grounded && (lastJumpAt >= jumpDelay) && !playerMovement.IsMoving();
+        return grounded && (lastJumpAt >= jumpDelay);
     }
 }

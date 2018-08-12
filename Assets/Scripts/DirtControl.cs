@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DirtControl : MonoBehaviour
 {
@@ -70,7 +71,8 @@ public class DirtControl : MonoBehaviour
 
     private void MakeGround()
     {
-        transform.position = new Vector3(normalize(transform.position.x), normalize(transform.position.y), transform.position.z);
+        if (gameObject.CompareTag("Ground")) return;
+        transform.position = new Vector3(normalizeX(transform.position.x), normalizeY(transform.position.y), transform.position.z);
         gameObject.tag = "Ground";
         gameObject.layer = LayerMask.NameToLayer("Ground");
         body.bodyType = RigidbodyType2D.Kinematic;
@@ -81,6 +83,7 @@ public class DirtControl : MonoBehaviour
 
     private void MakeSolid()
     {
+        transform.position = new Vector3(normalizeX(transform.position.x), normalizeY(transform.position.y), 0);
         aCollider.isTrigger = false;
     }
 
@@ -89,8 +92,21 @@ public class DirtControl : MonoBehaviour
         return aCollider.IsTouching(playerCollider);
     }
     
-    private float normalize(float x)
+    private float normalizeX(float x)
     {
         return Mathf.Ceil(x) - 0.5f;
+    }
+
+    private float normalizeY(float y)
+    {
+        return y;
+        // TODO: actually we need this to avoid 1px deltas
+        if (y < 0) {
+            return Mathf.Ceil(y / 0.5f) * 0.5f;
+        }
+        else
+        {
+            return Mathf.Floor(y / 0.5f) * 0.5f;
+        }
     }
 }

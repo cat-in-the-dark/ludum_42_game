@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        end = transform.position.x; // initial
         animator = GetComponent<Animator>();
         aCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -43,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -1.5f)
+        {
+            // TODO: actually it's phisics problem. But try to fix
+            transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
+        }
         SmoothMovement();
 
         int h = (int) Input.GetAxisRaw("Horizontal");
@@ -63,23 +69,27 @@ public class PlayerMovement : MonoBehaviour
 
     bool TryMove(int dir)
     {
-        if (isMoving) return false;
+//        if (isMoving) return false;
         spriteRenderer.flipX = flipX;
 
         var startPos = transform.position;
-        start = startPos.x;
-        end = normalize(start + dir);
-        Debug.Log(end);
+        start = normalize(startPos.x);
+        var toEnd = normalize(start + dir);
+        Debug.Log(toEnd);
 
-        var to = startPos + Vector3.right * dir;
+        // TODO: Actually it should be detected by phisics. Its kostil.
+        if (toEnd >= 2.5 || toEnd <= -2.5) return false;
+
+        var to = startPos + Vector3.right * dir + Vector3.down * 0.1f;
 
         aCollider.enabled = false;
-        var hit = Physics2D.Linecast(startPos, to, blockingLayer);
+        var hit = Physics2D.Linecast(startPos, to, blockingLayer, 0);
         aCollider.enabled = true;
 
         if (hit.transform != null) return false;
 
-//        Debug.LogFormat("MOVE {0} to {1}", start, end);        
+//        Debug.LogFormat("MOVE {0} to {1}", start, end);
+        end = toEnd;
         OnStartMoving();
 
         return true;
@@ -88,7 +98,11 @@ public class PlayerMovement : MonoBehaviour
     private void SmoothMovement()
     {
         // TODO: CHECK THAT OBJECT DOESN't STUCK in box collider
-        if (!isMoving) return;
+        if (!isMoving)
+        {
+            transform.position = new Vector3(end, transform.position.y, transform.position.z);
+            return;
+        }
         var inverseMoveTime = 1f / moveTime;
 
         var delta = end - transform.position.x;
@@ -101,13 +115,6 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector3(end, transform.position.y, transform.position.z);
             OnStopMoving();
-        }
-        
-        var newDelta = end - transform.position.x;
-        if (newDelta - delta > EPSILON)
-        {
-            Debug.Log("Strange!");
-//            end = start;
         }
     }
 
