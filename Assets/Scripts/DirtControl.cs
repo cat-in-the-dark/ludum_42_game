@@ -1,27 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DirtControl : MonoBehaviour
 {
     public float StampDelay = 1f;
     private int MaxStompLevel = 3;
-    
+
     public bool canBeStomped;
     public bool grounded;
     public Collider2D playerCollider;
     public PlayerMovement player;
-    private Animator animator;
-    private Collider2D aCollider;
-    private int stompLevel = 0;
+    public Collider2D soilCollider;
 
-    private Rigidbody2D body;
+    public Animator animator;
+    public Collider2D aCollider;
+    public Rigidbody2D body;
+
+    private int stompLevel = 0;
 
     // Use this for initialization
     void Start()
     {
         ResetStampCooldown();
         player = FindObjectOfType<PlayerMovement>();
+
         playerCollider = player.GetComponent<Collider2D>();
+
         animator = GetComponent<Animator>();
         aCollider = GetComponent<Collider2D>();
         body = GetComponent<Rigidbody2D>();
@@ -40,6 +43,16 @@ public class DirtControl : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+            animator.SetBool("touchDown", true);
+            MakeGround();
+        }
+    }
+
     private void Stomp()
     {
         canBeStomped = false;
@@ -51,6 +64,7 @@ public class DirtControl : MonoBehaviour
             MakeSolid();
             return;
         }
+
         Invoke("ResetStampCooldown", StampDelay);
     }
 
@@ -59,26 +73,18 @@ public class DirtControl : MonoBehaviour
         canBeStomped = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-            animator.SetBool("touchDown", true);
-            MakeGround();
-        }
-    }
-
-    private void MakeGround()
+    public void MakeGround()
     {
         if (gameObject.CompareTag("Ground")) return;
-        transform.position = new Vector3(normalizeX(transform.position.x), normalizeY(transform.position.y), transform.position.z);
+        transform.position = new Vector3(normalizeX(transform.position.x), normalizeY(transform.position.y),
+            transform.position.z);
         gameObject.tag = "Ground";
         gameObject.layer = LayerMask.NameToLayer("Ground");
         body.bodyType = RigidbodyType2D.Kinematic;
         body.freezeRotation = true;
         body.constraints = RigidbodyConstraints2D.FreezeAll;
         aCollider.isTrigger = true;
+        soilCollider.GetComponent<Collider2D>().enabled = true;
     }
 
     private void MakeSolid()
@@ -89,9 +95,10 @@ public class DirtControl : MonoBehaviour
 
     private bool IsCollidingPlayer()
     {
-        return aCollider.IsTouching(playerCollider);
+        var delta = Mathf.Abs(playerCollider.transform.position.y - aCollider.transform.position.y);
+        return aCollider.IsTouching(playerCollider) && delta <= 0.1;
     }
-    
+
     private float normalizeX(float x)
     {
         return Mathf.Ceil(x) - 0.5f;
@@ -101,7 +108,8 @@ public class DirtControl : MonoBehaviour
     {
         return y;
         // TODO: actually we need this to avoid 1px deltas
-        if (y < 0) {
+        if (y < 0)
+        {
             return Mathf.Ceil(y / 0.5f) * 0.5f;
         }
         else
