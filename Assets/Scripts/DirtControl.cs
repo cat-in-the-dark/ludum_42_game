@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DirtControl : MonoBehaviour
 {
-    public float StampDelay = 1f;
     private int MaxStompLevel = 3;
 
     public bool canBeStomped;
@@ -65,7 +65,7 @@ public class DirtControl : MonoBehaviour
             return;
         }
 
-        Invoke("ResetStampCooldown", StampDelay);
+        Invoke("ResetStampCooldown", player.StampDelay);
     }
 
     private void ResetStampCooldown()
@@ -106,15 +106,22 @@ public class DirtControl : MonoBehaviour
 
     private float normalizeY(float y)
     {
-        return y;
+        var mod = 5;
+        var rem = (y * 10f) % mod;
+        if (rem < 0) rem += 5;
+        var res = y - rem / 10f;
+        Debug.LogFormat("{0} to {1}: {2}", y, res, rem);
+        if (res < -1.5) return -1.5f; // TODO: its costil, need smart round
+        return res;
+//        return y;
         // TODO: actually we need this to avoid 1px deltas
-        if (y < 0)
-        {
-            return Mathf.Ceil(y / 0.5f) * 0.5f;
-        }
-        else
-        {
-            return Mathf.Floor(y / 0.5f) * 0.5f;
-        }
+//        if (y < 0)
+//        {
+//            return Mathf.Ceil(y / 0.5f) * 0.5f;
+//        }
+//        else
+//        {
+//            return Mathf.Floor(y / 0.5f) * 0.5f;
+//        }
     }
 }

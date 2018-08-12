@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public LayerMask blockingLayer; //Layer on which collision will be checked.
     public float moveTime = 0.1f;
+    public float StampDelay = 1f;
 
     private Collider2D aCollider;
     private Animator animator;
