@@ -31,6 +31,16 @@ public class BrickControl : MonoBehaviour
 
             Destroy(gameObject, 1f);
         }
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Invoke("DisablePhisics", 0.2f);
+            
+            hurts = false;
+            animator.SetBool("destroy", true);
+            
+            Destroy(gameObject, 1f);
+        }
     }
 
     private void DisablePhisics()

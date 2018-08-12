@@ -80,7 +80,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(toEnd);
 
         // TODO: Actually it should be detected by phisics. Its kostil.
-        if (toEnd >= 2.5 || toEnd <= -2.5) return false;
+        if (transform.position.y < 6)
+        {
+            if (toEnd >= 2.5 || toEnd <= -2.5) return false;
+        }
 
         var to = startPos + Vector3.right * dir + Vector3.down * 0.1f;
 
