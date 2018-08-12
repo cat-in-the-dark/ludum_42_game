@@ -1,47 +1,35 @@
 fileFormatVersion: 2
-guid: 49dc561e8778f497db7f4792f8eed5d1
+guid: d8c923fa739f7496c82ba810db1ba4ef
 TextureImporter:
   fileIDToRecycleName:
-    21300000: krot_0
-    21300002: krot_1
-    21300004: krot_2
-    21300006: krot_3
-    21300008: krot_4
-    21300010: krot_5
-    21300012: krot_6
-    21300014: krot_7
-    21300016: krot_8
-    21300018: krot_9
-    21300020: krot_10
-    21300022: krot_11
-    21300024: krot_12
-    21300026: krot_13
-    21300028: krot_14
-    21300030: krot_15
-    21300032: krot_16
-    21300034: krot_17
-    21300036: krot_18
-    21300038: krot_19
-    21300040: krot_20
-    21300042: krot_21
-    21300044: krot_22
-    21300046: krot_23
-    21300048: krot_24
-    21300050: krot_25
-    21300052: krot_26
-    21300054: krot_27
-    21300056: krot_28
-    21300058: krot_29
-    21300060: krot_30
-    21300062: krot_31
-    21300064: krot_32
-    21300066: krot_33
-    21300068: krot_34
-    21300070: krot_35
-    21300072: krot_36
-    21300074: krot_37
-    21300076: krot_38
-    21300078: krot_39
+    21300000: heart_0
+    21300002: heart_1
+    21300004: heart_2
+    21300006: heart_3
+    21300008: heart_4
+    21300010: heart_5
+    21300012: heart_6
+    21300014: heart_7
+    21300016: heart_8
+    21300018: heart_9
+    21300020: heart_10
+    21300022: heart_11
+    21300024: heart_12
+    21300026: heart_13
+    21300028: heart_14
+    21300030: heart_15
+    21300032: heart_16
+    21300034: heart_17
+    21300036: heart_18
+    21300038: heart_19
+    21300040: heart_20
+    21300042: heart_21
+    21300044: heart_22
+    21300046: heart_23
+    21300048: heart_24
+    21300050: heart_25
+    21300052: heart_26
+    21300054: heart_27
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -129,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: krot_0
+      name: heart_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,7 +131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_1
+      name: heart_1
       rect:
         serializedVersion: 2
         x: 48
@@ -157,7 +145,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_2
+      name: heart_2
       rect:
         serializedVersion: 2
         x: 96
@@ -171,7 +159,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_3
+      name: heart_3
       rect:
         serializedVersion: 2
         x: 144
@@ -185,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_4
+      name: heart_4
       rect:
         serializedVersion: 2
         x: 192
@@ -199,7 +187,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_5
+      name: heart_5
       rect:
         serializedVersion: 2
         x: 240
@@ -213,7 +201,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_6
+      name: heart_6
       rect:
         serializedVersion: 2
         x: 288
@@ -227,7 +215,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_7
+      name: heart_7
       rect:
         serializedVersion: 2
         x: 336
@@ -241,7 +229,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_8
+      name: heart_8
       rect:
         serializedVersion: 2
         x: 384
@@ -255,7 +243,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_9
+      name: heart_9
       rect:
         serializedVersion: 2
         x: 432
@@ -269,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_10
+      name: heart_10
       rect:
         serializedVersion: 2
         x: 480
@@ -283,7 +271,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_11
+      name: heart_11
       rect:
         serializedVersion: 2
         x: 528
@@ -297,7 +285,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_12
+      name: heart_12
       rect:
         serializedVersion: 2
         x: 576
@@ -311,7 +299,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_13
+      name: heart_13
       rect:
         serializedVersion: 2
         x: 624
@@ -325,7 +313,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_14
+      name: heart_14
       rect:
         serializedVersion: 2
         x: 672
@@ -339,7 +327,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_15
+      name: heart_15
       rect:
         serializedVersion: 2
         x: 720
@@ -353,7 +341,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_16
+      name: heart_16
       rect:
         serializedVersion: 2
         x: 768
@@ -367,7 +355,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_17
+      name: heart_17
       rect:
         serializedVersion: 2
         x: 816
@@ -381,7 +369,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_18
+      name: heart_18
       rect:
         serializedVersion: 2
         x: 864
@@ -395,7 +383,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_19
+      name: heart_19
       rect:
         serializedVersion: 2
         x: 912
@@ -409,7 +397,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_20
+      name: heart_20
       rect:
         serializedVersion: 2
         x: 960
@@ -423,7 +411,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_21
+      name: heart_21
       rect:
         serializedVersion: 2
         x: 1008
@@ -437,7 +425,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_22
+      name: heart_22
       rect:
         serializedVersion: 2
         x: 1056
@@ -451,7 +439,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_23
+      name: heart_23
       rect:
         serializedVersion: 2
         x: 1104
@@ -465,7 +453,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_24
+      name: heart_24
       rect:
         serializedVersion: 2
         x: 1152
@@ -479,7 +467,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_25
+      name: heart_25
       rect:
         serializedVersion: 2
         x: 1200
@@ -493,7 +481,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_26
+      name: heart_26
       rect:
         serializedVersion: 2
         x: 1248
@@ -507,178 +495,10 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: krot_27
+      name: heart_27
       rect:
         serializedVersion: 2
         x: 1296
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_28
-      rect:
-        serializedVersion: 2
-        x: 1344
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_29
-      rect:
-        serializedVersion: 2
-        x: 1392
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_30
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_31
-      rect:
-        serializedVersion: 2
-        x: 1488
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_32
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_33
-      rect:
-        serializedVersion: 2
-        x: 1584
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_34
-      rect:
-        serializedVersion: 2
-        x: 1632
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_35
-      rect:
-        serializedVersion: 2
-        x: 1680
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_36
-      rect:
-        serializedVersion: 2
-        x: 1728
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_37
-      rect:
-        serializedVersion: 2
-        x: 1776
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_38
-      rect:
-        serializedVersion: 2
-        x: 1824
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: krot_39
-      rect:
-        serializedVersion: 2
-        x: 1872
         y: 0
         width: 48
         height: 48

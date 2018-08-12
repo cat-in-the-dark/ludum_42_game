@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-guid: acbfa1c947b7844c9b216161019a26ae
+guid: fa7141c76d38643d5894824dc9489e8c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Kopatel_0
-    21300002: Kopatel_1
-    21300004: Kopatel_2
-    21300006: Kopatel_3
-    21300008: Kopatel_4
-    21300010: Kopatel_5
-    21300012: Kopatel_6
+    21300000: portal1_0
+    21300002: portal1_1
+    21300004: portal1_2
+    21300006: portal1_3
+    21300008: portal1_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -96,7 +94,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kopatel_0
+      name: portal1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -110,7 +108,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Kopatel_1
+      name: portal1_1
       rect:
         serializedVersion: 2
         x: 48
@@ -124,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Kopatel_2
+      name: portal1_2
       rect:
         serializedVersion: 2
         x: 96
@@ -138,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Kopatel_3
+      name: portal1_3
       rect:
         serializedVersion: 2
         x: 144
@@ -152,38 +150,10 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Kopatel_4
+      name: portal1_4
       rect:
         serializedVersion: 2
         x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Kopatel_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Kopatel_6
-      rect:
-        serializedVersion: 2
-        x: 288
         y: 0
         width: 48
         height: 48
