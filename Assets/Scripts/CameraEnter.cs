@@ -24,7 +24,7 @@ public class CameraEnter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Math.Abs(Camera.position.y - FinalCameraPos.position.y) > 0.01)
+        if (Camera.position.y >= FinalCameraPos.position.y)
         {
             Camera.Translate(0f, moveSpeed * Time.deltaTime, 0f);
         }
