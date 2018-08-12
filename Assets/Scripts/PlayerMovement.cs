@@ -6,10 +6,14 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask blockingLayer; //Layer on which collision will be checked.
     public float moveTime = 0.1f;
     public float StampDelay = 1f;
-
+    public int MaxStamina;
+    public float StaminaCooldown;
+    
     private Collider2D aCollider;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+
+    public Animator HeartAnimator;
 
     private const float EPSILON = 0.00001f;
     private float start;
@@ -17,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving;
     private bool flipX;
     public bool isStan;
+
+    public int stamina;
+
+
+    private bool resetingStamina;
 
     public bool IsMoving()
     {
@@ -26,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        resetingStamina = false;
+        stamina = MaxStamina;
         end = transform.position.x; // initial
         animator = GetComponent<Animator>();
         aCollider = GetComponent<Collider2D>();
@@ -34,17 +45,22 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CanStomp()
     {
-        return !IsMoving() && !isStan;
+        return !IsMoving() && !isStan && (stamina > 0);
     }
 
     public void OnStomp()
     {
+        stamina--;
         animator.SetTrigger("playerStomp");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (stamina <= 0)
+        {
+            OnResetStamina();
+        }
         if (transform.position.y < -1.5f)
         {
             // TODO: actually it's phisics problem. But try to fix
@@ -71,13 +87,12 @@ public class PlayerMovement : MonoBehaviour
     bool TryMove(int dir)
     {
 //        if (isMoving) return false;
-        if (isStan) return false;
+        if (isStan || stamina <= 0) return false;
         spriteRenderer.flipX = flipX;
 
         var startPos = transform.position;
         start = normalize(startPos.x);
         var toEnd = normalize(start + dir);
-        Debug.Log(toEnd);
 
         // TODO: Actually it should be detected by phisics. Its kostil.
         if (transform.position.y < 6)
@@ -93,7 +108,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (hit.transform != null) return false;
 
-//        Debug.LogFormat("MOVE {0} to {1}", start, end);
+        Debug.LogFormat("MOVE {0} to {1}", toEnd, end);
+        if (Math.Abs(end - toEnd) > 0.1)
+        {
+            stamina--;
+        }
+            
         end = toEnd;
         OnStartMoving();
 
@@ -152,5 +172,21 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("stan", false);
         isStan = false;
+    }
+
+    private void OnResetStamina()
+    {
+        if (resetingStamina) return;
+        resetingStamina = true;
+        animator.SetBool("resting", true);
+        HeartAnimator.SetTrigger("exploid");
+        Invoke("ResetStamina", StaminaCooldown);
+    }
+
+    private void ResetStamina()
+    {
+        stamina = MaxStamina;
+        animator.SetBool("resting", false);
+        resetingStamina = false;
     }
 }

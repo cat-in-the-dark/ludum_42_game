@@ -42,6 +42,7 @@ public class JumpControl : MonoBehaviour
 
     void OnJump()
     {
+        playerMovement.stamina--;
         lastJumpAt = 0;
         grounded = false;
         animator.SetBool("playerJumping", true);

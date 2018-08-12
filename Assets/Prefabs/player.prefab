@@ -78,7 +78,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.98, y: 0.95}
+  m_Size: {x: 0.85, y: 0.95}
   m_Direction: 0
 --- !u!95 &95888234527184544
 Animator:
@@ -128,6 +128,10 @@ MonoBehaviour:
     m_Bits: 768
   moveTime: 0.8
   StampDelay: 0.4
+  MaxStamina: 8
+  StaminaCooldown: 3
+  isStan: 0
+  stamina: 0
 --- !u!212 &212834435883007324
 SpriteRenderer:
   m_ObjectHideFlags: 1
