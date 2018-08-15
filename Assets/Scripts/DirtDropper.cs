@@ -16,7 +16,7 @@ public class DirtDropper : MonoBehaviour
         int column = Random.Range(0, 4);
         float posX = column - 1.5f;
         float posY = 6.5f;
-        var inst = Instantiate(dirt, new Vector3(posX, posY, -1), Quaternion.identity);
+        Instantiate(dirt, new Vector3(posX, posY, -1), Quaternion.identity);
         
         Invoke("Drop", RandomTime());
     }

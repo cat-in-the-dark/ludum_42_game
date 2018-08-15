@@ -8,7 +8,7 @@ public class DirtControl : MonoBehaviour
     public bool canBeStomped;
     public bool grounded;
     public Collider2D playerCollider;
-    public PlayerMovement player;
+    public Player player;
     public Collider2D soilCollider;
 
     public Animator animator;
@@ -21,7 +21,7 @@ public class DirtControl : MonoBehaviour
     void Start()
     {
         ResetStampCooldown();
-        player = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<Player>();
 
         playerCollider = player.GetComponent<Collider2D>();
 
@@ -35,9 +35,9 @@ public class DirtControl : MonoBehaviour
     {
         if (Input.GetButton("Submit") && player.CanStomp())
         {
-            player.OnStomp();
             if (IsCollidingPlayer() && canBeStomped && grounded)
             {
+                player.OnStomp();
                 Stomp();
             }
         }
@@ -45,19 +45,17 @@ public class DirtControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-            animator.SetBool("touchDown", true);
-            MakeGround();
-        }
+        if (!other.gameObject.CompareTag("Ground")) return;
+        
+        grounded = true;
+        animator.SetBool("touchDown", true);
+        MakeGround();
     }
 
     private void Stomp()
     {
         canBeStomped = false;
         stompLevel++;
-        player.stamina--;
         animator.SetTrigger("press");
         if (stompLevel > MaxStompLevel)
         {
@@ -113,15 +111,5 @@ public class DirtControl : MonoBehaviour
         var res = y - rem / 10f;
         if (res < -1.5) return -1.5f; // TODO: its costil, need smart round
         return res;
-//        return y;
-        // TODO: actually we need this to avoid 1px deltas
-//        if (y < 0)
-//        {
-//            return Mathf.Ceil(y / 0.5f) * 0.5f;
-//        }
-//        else
-//        {
-//            return Mathf.Floor(y / 0.5f) * 0.5f;
-//        }
     }
 }

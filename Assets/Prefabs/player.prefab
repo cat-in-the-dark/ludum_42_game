@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 50426180980866406}
   - component: {fileID: 114402791458222210}
   - component: {fileID: 70528581956641746}
+  - component: {fileID: 114722850931995486}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -108,10 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23a209670c184ce1a67b67fa360775d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grounded: 1
-  lastJumpAt: 3.4028235e+38
-  jumpDelay: 1
-  jumpPower: 270
 --- !u!114 &114471097232812596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,12 +123,31 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 768
-  moveTime: 0.8
-  StampDelay: 0.4
-  MaxStamina: 8
-  StaminaCooldown: 3
-  isStan: 0
+  moveTime: 0.65
+  lr: {fileID: 0}
+  HeartAnimator: {fileID: 0}
+--- !u!114 &114722850931995486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290797135620244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3891d9a296e644cfaafa57f0faaeab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   stamina: 0
+  isStan: 0
+  isMoving: 0
+  resetingStamina: 0
+  grounded: 1
+  lastJumpAt: 3.4028235e+38
+  MaxStamina: 16
+  StaminaCooldown: 1
+  JumpDelay: 1
+  JumpPower: 270
+  StampDelay: 0.25
 --- !u!212 &212834435883007324
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -164,7 +180,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1389556283
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 56037c23566e644188790c681d527a62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

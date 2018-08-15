@@ -37,7 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Debug
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -48,6 +48,12 @@ TagManager:
   - name: Player
     uniqueID: 2905411013
     locked: 0
+  - name: bricks
+    uniqueID: 2272566525
+    locked: 0
   - name: NPC
     uniqueID: 2954393609
+    locked: 0
+  - name: DEBUG
+    uniqueID: 35898251
     locked: 0

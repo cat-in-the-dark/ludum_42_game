@@ -5,11 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public LayerMask blockingLayer; //Layer on which collision will be checked.
     public float moveTime = 0.1f;
-    public float StampDelay = 1f;
-    public int MaxStamina;
-    public float StaminaCooldown;
+    public LineRenderer lr;
     
-    private Collider2D aCollider;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
@@ -18,45 +15,23 @@ public class PlayerMovement : MonoBehaviour
     private const float EPSILON = 0.00001f;
     private float start;
     private float end;
-    private bool isMoving;
     private bool flipX;
-    public bool isStan;
 
-    public int stamina;
-
-
-    private bool resetingStamina;
-
-    public bool IsMoving()
-    {
-        return isMoving;
-    }
+    private Player player;
 
     // Use this for initialization
     void Start()
     {
-        resetingStamina = false;
-        stamina = MaxStamina;
+        player = GetComponent<Player>();
         end = transform.position.x; // initial
         animator = GetComponent<Animator>();
-        aCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    public bool CanStomp()
-    {
-        return !IsMoving() && !isStan && (stamina > 0);
-    }
-
-    public void OnStomp()
-    {
-        animator.SetTrigger("playerStomp");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stamina <= 0)
+        if (player.NeedStamina())
         {
             OnResetStamina();
         }
@@ -86,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     bool TryMove(int dir)
     {
 //        if (isMoving) return false;
-        if (isStan || stamina <= 0) return false;
+        if (player.isStan || player.NeedStamina()) return false;
         spriteRenderer.flipX = flipX;
 
         var startPos = transform.position;
@@ -101,15 +76,11 @@ public class PlayerMovement : MonoBehaviour
 
         var to = startPos + Vector3.right * dir + Vector3.down * 0.1f;
 
-        aCollider.enabled = false;
-        var hit = Physics2D.Linecast(startPos, to, blockingLayer, 0);
-        aCollider.enabled = true;
-
-        if (hit.transform != null) return false;
+        if (willBeCollided(startPos, to)) return false;
         
         if (Math.Abs(end - toEnd) > 0.1)
         {
-            stamina--;
+            player.OnMove();
         }
             
         end = toEnd;
@@ -120,8 +91,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void SmoothMovement()
     {
-        // TODO: CHECK THAT OBJECT DOESN't STUCK in box collider
-        if (!isMoving)
+        if (willBeCollided(transform.position, new Vector3(end, transform.position.y, transform.position.z)))
+        {
+            end = start;
+        }
+        
+        if (!player.isMoving)
         {
             transform.position = new Vector3(end, transform.position.y, transform.position.z);
             return;
@@ -137,19 +112,32 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             transform.position = new Vector3(end, transform.position.y, transform.position.z);
+            start = end;
             OnStopMoving();
         }
     }
 
+    private bool willBeCollided(Vector3 startPos, Vector3 to)
+    {
+        lr.SetPosition(0, to);
+        lr.SetPosition(1, startPos);
+        
+//        aCollider.enabled = false;
+        var hit = Physics2D.Linecast(startPos, to, blockingLayer, 0);
+//        aCollider.enabled = true;
+
+        return hit.transform != null;
+    }
+
     private void OnStartMoving()
     {
-        isMoving = true;
+        player.isMoving = true;
         animator.SetBool("playerRunning", true);
     }
 
     private void OnStopMoving()
     {
-        isMoving = false;
+        player.isMoving = false;
         animator.SetBool("playerRunning", false);
     }
 
@@ -162,29 +150,28 @@ public class PlayerMovement : MonoBehaviour
     {
         CancelInvoke("ResetStan");
         animator.SetBool("stan", true);
-        isStan = true;
+        player.Stan();
         Invoke("ResetStan", stanDelay);
     }
 
     private void ResetStan()
     {
         animator.SetBool("stan", false);
-        isStan = false;
+        player.ResetStan();
     }
 
     private void OnResetStamina()
     {
-        if (resetingStamina || isStan) return;
-        resetingStamina = true;
+        if (player.resetingStamina || player.isStan) return;
+        player.resetingStamina = true;
         animator.SetBool("resting", true);
         HeartAnimator.SetTrigger("exploid");
-        Invoke("ResetStamina", StaminaCooldown);
+        Invoke("ResetStamina", player.StaminaCooldown);
     }
 
     private void ResetStamina()
     {
-        stamina = MaxStamina;
         animator.SetBool("resting", false);
-        resetingStamina = false;
+        player.ResetStamina();
     }
 }
