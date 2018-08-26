@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class WormDropper : MonoBehaviour {
+public class WormDropper : MonoBehaviour
+{
     public GameObject worm;
     public float DropCooldown = 5f;
 
@@ -18,7 +19,7 @@ public class WormDropper : MonoBehaviour {
 
         Invoke("Drop", RandomTime());
     }
-    
+
     float RandomTime()
     {
         return Random.Range(DropCooldown - 1f, DropCooldown + 1f);

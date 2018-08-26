@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class JumpControl : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class JumpControl : MonoBehaviour
     void Update()
     {
         player.lastJumpAt += Time.deltaTime;
+    }
+
+    void FixedUpdate()
+    {
         TryJump();
     }
 
@@ -23,20 +28,28 @@ public class JumpControl : MonoBehaviour
     {
         if (!Input.GetButton("Jump")) return;
 
-        if (player.CanJump()) OnJump();
+        if (player.CanJump()) StartCoroutine(OnJump());
     }
 
-    void OnJump()
+    IEnumerator OnJump()
     {
-        var force = Vector2.up * player.JumpPower;
-        Debug.Log(force);
-        body.AddForce(force, ForceMode2D.Impulse);
+        var jumpVector = Vector2.up * player.JumpPower;
         player.OnJump();
+        body.velocity = Vector2.zero;
+        float timer = 0f;
+        while (timer < player.jumpTime && !player.grounded)
+        {
+            float proportionCompleted = timer / player.jumpTime;
+            Vector2 thisFrameJumpVector = Vector2.Lerp(jumpVector, Vector2.zero, proportionCompleted);
+            body.AddForce(thisFrameJumpVector * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        player.OnStopJumping();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Ground"))
         {
             player.OnStopJumping();

@@ -221,7 +221,7 @@ MonoBehaviour:
   MaxStamina: 16
   StaminaCooldown: 1
   JumpDelay: 1
-  JumpPower: 1
+  JumpPower: 1300
   StampDelay: 0.25
   resetingStamina: 0
   isStan: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   grounded: 1
   lastJumpAt: 3.4028235e+38
   stamina: 0
+  jumpTime: 0.5
   OnStanSound: {fileID: 8300000, guid: 9f1f695bee14547c1bcfac725349b348, type: 3}
   OnLandGround: {fileID: 8300000, guid: 5b843672a10754e519df29f64337eca8, type: 3}
   OnWalkGround: {fileID: 8300000, guid: fc57706eb5d564278b783deea7a0ea51, type: 3}

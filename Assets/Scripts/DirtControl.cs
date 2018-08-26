@@ -88,6 +88,7 @@ public class DirtControl : MonoBehaviour
 
     private void MakeSolid()
     {
+        animator.SetBool("beGround", true);
         transform.position = new Vector3(normalizeX(transform.position.x), normalizeY(transform.position.y), 0);
         aCollider.isTrigger = false;
     }

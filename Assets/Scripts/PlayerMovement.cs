@@ -5,12 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public LayerMask blockingLayer; //Layer on which collision will be checked.
     public float moveTime = 0.1f;
-    public LineRenderer lr;
-    
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-
-    public Animator HeartAnimator;
 
     private const float EPSILON = 0.00001f;
     private float start;
@@ -31,15 +27,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.NeedStamina())
-        {
-            OnResetStamina();
-        }
         if (transform.position.y < -1.5f)
         {
             // TODO: actually it's phisics problem. But try to fix
             transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
         }
+
         SmoothMovement();
 
         int h = (int) Input.GetAxisRaw("Horizontal");
@@ -61,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     bool TryMove(int dir)
     {
 //        if (isMoving) return false;
-        if (player.isStan || player.NeedStamina()) return false;
+        if (player.isStan) return false;
         spriteRenderer.flipX = flipX;
 
         var startPos = transform.position;
@@ -77,12 +70,12 @@ public class PlayerMovement : MonoBehaviour
         var to = startPos + Vector3.right * dir + Vector3.down * 0.1f;
 
         if (willBeCollided(startPos, to)) return false;
-        
+
         if (Math.Abs(end - toEnd) > 0.1)
         {
             player.OnMove();
         }
-            
+
         end = toEnd;
         OnStartMoving();
 
@@ -95,12 +88,13 @@ public class PlayerMovement : MonoBehaviour
         {
             end = start;
         }
-        
+
         if (!player.isMoving)
         {
             transform.position = new Vector3(end, transform.position.y, transform.position.z);
             return;
         }
+
         var inverseMoveTime = 1f / moveTime;
 
         var delta = end - transform.position.x;
@@ -119,9 +113,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool willBeCollided(Vector3 startPos, Vector3 to)
     {
-        lr.SetPosition(0, to);
-        lr.SetPosition(1, startPos);
-        
 //        aCollider.enabled = false;
         var hit = Physics2D.Linecast(startPos, to, blockingLayer, 0);
 //        aCollider.enabled = true;
@@ -158,20 +149,5 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("stan", false);
         player.ResetStan();
-    }
-
-    private void OnResetStamina()
-    {
-        if (player.resetingStamina || player.isStan) return;
-        player.resetingStamina = true;
-        animator.SetBool("resting", true);
-        HeartAnimator.SetTrigger("exploid");
-        Invoke("ResetStamina", player.StaminaCooldown);
-    }
-
-    private void ResetStamina()
-    {
-        animator.SetBool("resting", false);
-        player.ResetStamina();
     }
 }
