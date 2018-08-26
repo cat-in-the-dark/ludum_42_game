@@ -3,11 +3,14 @@
 public class BrickControl : MonoBehaviour
 {
     public float StanDelay;
+    public AudioClip OnCollideLandSound;
+    
     private Animator animator;
     private bool hurts;
     private PlayerMovement player;
     private Rigidbody2D _body;
     private Collider2D _collider2D;
+    private AudioSource _audioSource;
 
     // Use this for initialization
     void Start()
@@ -16,6 +19,7 @@ public class BrickControl : MonoBehaviour
         animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
+        _audioSource = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
@@ -38,6 +42,7 @@ public class BrickControl : MonoBehaviour
             
             hurts = false;
             animator.SetBool("destroy", true);
+            _audioSource.PlayOneShot(OnCollideLandSound);
             
             Destroy(gameObject, 1f);
         }

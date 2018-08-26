@@ -875,6 +875,11 @@ Prefab:
       propertyPath: HeartAnimator
       value: 
       objectReference: {fileID: 1406071282}
+    - target: {fileID: 114722850931995486, guid: a8b861ed0a4b54191b885526cc35a0d6,
+        type: 2}
+      propertyPath: JumpPower
+      value: 5.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8b861ed0a4b54191b885526cc35a0d6, type: 2}
   m_IsPrefabParent: 0

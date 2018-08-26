@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JumpControl : MonoBehaviour
 {
-    private Animator animator;
     private Rigidbody2D body;
     private Player player;
 
@@ -11,7 +9,6 @@ public class JumpControl : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         player = GetComponent<Player>();
     }
 
@@ -31,21 +28,18 @@ public class JumpControl : MonoBehaviour
 
     void OnJump()
     {
+        var force = Vector2.up * player.JumpPower;
+        Debug.Log(force);
+        body.AddForce(force, ForceMode2D.Impulse);
         player.OnJump();
-        body.AddForce(Vector2.up * player.JumpPower);
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Ground"))
         {
-            OnStopJumping();
+            player.OnStopJumping();
         }
-    }
-
-    private void OnStopJumping()
-    {
-        player.OnStopJumping();
     }
 }

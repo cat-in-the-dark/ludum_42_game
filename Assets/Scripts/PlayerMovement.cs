@@ -131,13 +131,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnStartMoving()
     {
-        player.isMoving = true;
+        player.OnStartMoving();
         animator.SetBool("playerRunning", true);
     }
 
     private void OnStopMoving()
     {
-        player.isMoving = false;
+        player.OnStopMoving();
         animator.SetBool("playerRunning", false);
     }
 

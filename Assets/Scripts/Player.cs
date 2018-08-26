@@ -15,12 +15,18 @@ public class Player : MonoBehaviour {
     public bool grounded = true;
     public float lastJumpAt = float.MaxValue;
     public int stamina;
+
+    public AudioClip OnStanSound;
+    public AudioClip OnLandGround;
+    public AudioClip OnWalkGround;
     
     private Animator animator;
+    private AudioSource audioSource;
     
     void Start()
     {   
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         resetingStamina = false;
         stamina = MaxStamina;
     }
@@ -49,6 +55,7 @@ public class Player : MonoBehaviour {
     public void Stan()
     {
         isStan = true;
+        audioSource.PlayOneShot(OnStanSound);
     }
 
     public bool NeedStamina()
@@ -66,8 +73,12 @@ public class Player : MonoBehaviour {
 
     public void OnStopJumping()
     {
-        grounded = true;
-        animator.SetBool("playerJumping", false);
+        if (!grounded)
+        {
+            grounded = true;
+            animator.SetBool("playerJumping", false);
+            audioSource.PlayOneShot(OnLandGround);
+        }
     }
     
     public void OnStomp()
@@ -79,5 +90,22 @@ public class Player : MonoBehaviour {
     public void OnMove()
     {
         stamina--;
+    }
+
+    public void OnStartMoving()
+    {
+        if (!isMoving)
+        {
+            audioSource.PlayOneShot(OnWalkGround);
+            isMoving = true;
+        }
+    }
+
+    public void OnStopMoving()
+    {
+        if (isMoving)
+        {
+            isMoving = false;
+        }
     }
 }
